@@ -20,6 +20,18 @@ This is where the vast majority of your CSS code goes. */
 The following CSS rule changes the font size of all Buttons that have the
 "-primary" class modifier.
 */
-Button.-primary {
-    font-size: 18;
+
+.btn{
+    background: purple;
+
+    color: white;
+    width: 100%;
+    padding: 5+ 10;
+    border-radius: 30%;
+    margin: 5 0;
+}
+
+TextField{
+
+
 }

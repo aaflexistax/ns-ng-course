@@ -1,0 +1,22 @@
+{
+  "NativescriptExtend.fileAssociations": [
+    {
+      "systemId": "c:\\Users\\aanaxagorou.DESKTOP-MGCTE2O\\Projects\\NativeScript\\ns-ng-course\\schema\\tns.xsd",
+      "pattern": "**/**/*.xml"
+    },
+    {
+      "systemId": "http://www.w3.org/2001/XMLSchema.xsd",
+      "pattern": "c:\\Users\\aanaxagorou.DESKTOP-MGCTE2O\\Projects\\NativeScript\\ns-ng-course\\schema\\tns.xsd"
+    }
+  ],
+  "files.exclude": {
+    "schema": true
+  },
+  "NativescriptExtend.format.enabled": true,
+  "NativescriptExtend.validation.enabled": true,
+  "editor.snippetSuggestions": "Bottom",
+  "NativescriptExtend.enable.snippets": true,
+  "[html]": {
+    "editor.defaultFormatter": "Angular.ng-template"
+  }
+}
