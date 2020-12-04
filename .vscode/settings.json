@@ -15,8 +15,5 @@
   "NativescriptExtend.format.enabled": true,
   "NativescriptExtend.validation.enabled": true,
   "editor.snippetSuggestions": "Bottom",
-  "NativescriptExtend.enable.snippets": true,
-  "[html]": {
-    "editor.defaultFormatter": "Angular.ng-template"
-  }
+  "NativescriptExtend.enable.snippets": true
 }
