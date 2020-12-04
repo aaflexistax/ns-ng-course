@@ -12,5 +12,6 @@ export class ChallengeEditComponent {
 
   onSetChallenge() {
     this.input.emit(this.challengeDescription);
+    console.log(this.challengeDescription);
   }
 }

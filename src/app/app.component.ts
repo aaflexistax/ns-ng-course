@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   moduleId: module.id
 })
 export class AppComponent {
-  enteredChallenges: string[] = [];
+  enteredChallenges: string = '';
 
   onChallengeInput(input: string) {
     if (input === '') return;
-    this.enteredChallenges.push(input);
+    this.enteredChallenges = input;
   }
 }

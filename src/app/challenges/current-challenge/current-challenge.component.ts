@@ -8,7 +8,7 @@ import { ItemEventData } from '@nativescript/core';
   moduleId: module.id
 })
 export class CurrentChallengeComponent {
-  @Input() challengesList: string[] = [];
+  @Input() challengeTitle: string;
 
   onItemTap(args: ItemEventData) {
     console.log(args);
