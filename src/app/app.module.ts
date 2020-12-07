@@ -5,10 +5,11 @@ import { ChallengeEditComponent } from './challenges/challenge-edit/challenge-ed
 import { CurrentChallengeComponent } from './challenges/current-challenge/current-challenge.component';
 import { TodayComponent } from './challenges/today/today.component';
 import { AuthComponent } from './auth/auth.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, NativeScriptFormsModule],
+  imports: [NativeScriptModule, NativeScriptFormsModule, AppRoutingModule],
   declarations: [AppComponent, CurrentChallengeComponent, ChallengeEditComponent, AuthComponent, TodayComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA]
