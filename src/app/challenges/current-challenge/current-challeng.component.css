@@ -1,8 +1,12 @@
-
-.title{
+.title {
     font-size: 26;
     text-align: center;
     color: plum;
     font-weight: bold;
     background-color: wheat;
+}
+
+.backButton {
+    background-color: red;
+    color: red
 }
