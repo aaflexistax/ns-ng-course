@@ -6,11 +6,19 @@ import { CurrentChallengeComponent } from './challenges/current-challenge/curren
 import { TodayComponent } from './challenges/today/today.component';
 import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ActionBarComponent } from './shared/ui/action-bar/action-bar.component';
 
 @NgModule({
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, NativeScriptFormsModule, AppRoutingModule],
-  declarations: [AppComponent, CurrentChallengeComponent, ChallengeEditComponent, AuthComponent, TodayComponent],
+  declarations: [
+    AppComponent,
+    CurrentChallengeComponent,
+    ChallengeEditComponent,
+    AuthComponent,
+    TodayComponent,
+    ActionBarComponent
+  ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA]
 })
