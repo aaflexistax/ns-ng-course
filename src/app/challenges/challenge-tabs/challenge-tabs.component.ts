@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { RouterExtensions } from '@nativescript/angular';
 
 @Component({
   selector: 'ns-challenge-tabs',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
   moduleId: module.id
 })
 export class ChallengeTabsComponent implements OnInit {
-  constructor() {}
+  constructor(private router: RouterExtensions, private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.router.navigate([{ outlets: { currentChallenge: ['current-challenge'], today: ['today'] } }], {
+      relativeTo: this.activatedRoute
+    });
+  }
 }

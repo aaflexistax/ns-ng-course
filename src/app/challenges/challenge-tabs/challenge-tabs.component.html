@@ -1,18 +1,12 @@
-<Tabs>
+<Tabs tabsPosition="bottom">
     <TabStrip>
-        <TabStripItem><Label text="Tab 1"></Label></TabStripItem>
-        <TabStripItem><Label text="Tab 2"></Label></TabStripItem>
-
+        <TabStripItem><Label text="Today"></Label></TabStripItem>
+        <TabStripItem><Label text="Current Challenge"></Label></TabStripItem>
     </TabStrip>
-
     <TabContentItem>
-        <GridLayout>
-            <Label text="Home Page" class="h2 text-center"></Label>
-        </GridLayout>
+        <router-outlet name="today"></router-outlet>
     </TabContentItem>
     <TabContentItem>
-        <GridLayout>
-            <Label text="Account Page" class="h2 text-center"></Label>
-        </GridLayout>
+        <router-outlet name="currentChallenge"></router-outlet>
     </TabContentItem>
 </Tabs>

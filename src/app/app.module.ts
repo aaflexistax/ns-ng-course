@@ -8,10 +8,11 @@ import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ActionBarComponent } from './shared/ui/action-bar/action-bar.component';
 import { ChallengeTabsComponent } from './challenges/challenge-tabs/challenge-tabs.component';
+import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, NativeScriptFormsModule, AppRoutingModule],
+  imports: [NativeScriptModule, NativeScriptFormsModule, AppRoutingModule, NativeScriptUISideDrawerModule],
   declarations: [
     AppComponent,
     CurrentChallengeComponent,

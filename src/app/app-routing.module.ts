@@ -9,10 +9,16 @@ import { TodayComponent } from './challenges/today/today.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
-  { path: 'today', component: TodayComponent },
-  { path: 'current-challenge', component: CurrentChallengeComponent },
+
   { path: 'edit-challenge', component: ChallengeEditComponent },
-  { path: 'challenges', component: ChallengeTabsComponent }
+  {
+    path: 'challenges',
+    component: ChallengeTabsComponent,
+    children: [
+      { path: 'today', component: TodayComponent, outlet: 'today' },
+      { path: 'current-challenge', component: CurrentChallengeComponent, outlet: 'currentChallenge' }
+    ]
+  }
 ];
 
 @NgModule({
