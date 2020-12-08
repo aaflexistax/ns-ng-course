@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
 import { isAndroid, Page } from '@nativescript/core';
-import { truncate } from 'fs/promises';
+import { UIService } from '../ui.service';
 
 @Component({
   selector: 'ns-action-bar',
@@ -13,9 +13,13 @@ export class ActionBarComponent {
   @Input() title = '';
   @Input() showBackButton = true;
 
-  constructor(private page: Page, private router: RouterExtensions) {}
+  constructor(private page: Page, private router: RouterExtensions, private uiService: UIService) {}
   get canGoBack() {
     return this.router.canGoBack() && this.showBackButton;
+  }
+
+  get android() {
+    return isAndroid;
   }
 
   onGoBack = () => this.router.backToPreviousPage();
@@ -31,5 +35,9 @@ export class ActionBarComponent {
         );
       }
     }
+  }
+
+  onToggleButton() {
+    this.uiService.toggleDrawer();
   }
 }
