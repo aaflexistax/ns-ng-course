@@ -30,7 +30,7 @@
     "@angular/router": "^11.0.3",
     "@nativescript/angular": "~11.0.0",
     "@nativescript/core": "~7.0.0",
-    "@nativescript/theme": "~3.0.0",
+    "@nativescript/theme": "^3.0.1",
     "@nativescript/webpack": "3.0.0",
     "@types/node": "^14.14.10",
     "nativescript-ui-sidedrawer": "^9.0.3",
