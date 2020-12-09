@@ -1,5 +1,6 @@
 <ns-action-bar [title]="'Current Challenge'"></ns-action-bar>
 <StackLayout>
   <Label class="title" text="The current challenge"></Label>
-  <Button text="Edit" class="btn" nsRouterLink="/edit-challenge" pageTransition="slideLeft"></Button>
+  <Button text="Edit" class="btn" (tap)="onEdit()" pageTransition="slideLeft"></Button>
+  <Button text="Replace" class="btn" nsRouterLink="/challenges/replace" pageTransition="slideLeft"></Button>
 </StackLayout>

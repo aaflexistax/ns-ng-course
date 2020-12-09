@@ -12,7 +12,7 @@ import { UIService } from '../ui.service';
 export class ActionBarComponent {
   @Input() title = '';
   @Input() showBackButton = true;
-
+  @Input() hasMenu = true;
   constructor(private page: Page, private router: RouterExtensions, private uiService: UIService) {}
   get canGoBack() {
     return this.router.canGoBack() && this.showBackButton;
