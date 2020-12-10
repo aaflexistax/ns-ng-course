@@ -35,17 +35,21 @@ ActionBar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .btn {
+    width: 80%;
+    font-size: 24px;
+  }
 }
 
 .btn {
   width: 80%;
   padding: 0;
   border-radius: 5%;
-  border-width: 1;
+  border-width: 2;
   z-index: 0;
   font-size: 20;
   &.btn-secondary {
-    background: transparent;
+    background: white;
     border-color: $disabled;
     color: darken($disabled, 30);
   }
