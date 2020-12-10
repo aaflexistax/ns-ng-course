@@ -10,8 +10,9 @@ of writing your own CSS rules. You can learn more about the
 NativeScript core theme at https://github.com/nativescript/theme
 The imported CSS rules must precede all other types of rules.
 */
-$accent: #369;
-$complementary: gray;
+
+@import './theme/colors';
+$btn-color: $primary;
 
 @import '~@nativescript/theme/index';
 
@@ -23,6 +24,11 @@ The following CSS rule changes the font size of all Buttons that have the
 "-primary" class modifier.
 */
 
+ActionBar {
+  background: $secondary;
+  color: white;
+}
+
 .drawer-container {
   background: linear-gradient(140deg, #2b0c72, #5c3fa0);
   padding: 20;
@@ -33,7 +39,55 @@ The following CSS rule changes the font size of all Buttons that have the
 
 .btn {
   width: 80%;
-  padding: 5 10;
-  border-radius: 30%;
-  margin: 5 0;
+  padding: 0;
+  border-radius: 5%;
+  border-width: 1;
+  z-index: 0;
+  font-size: 20;
+  &.btn-secondary {
+    background: transparent;
+    border-color: $disabled;
+    color: darken($disabled, 30);
+  }
+}
+
+.form {
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success {
+  background: lighten($green, 10);
+  color: $btn-text;
+}
+
+h1 {
+  font-weight: bold;
+  color: $primary;
+  font-family: 'Oswald', 'Oswald-Regular', 'Oswald-Bold';
+}
+
+.fail {
+  background: lighten($red, 10);
+  color: $btn-text;
+}
+
+.input-field {
+  width: 80%;
+  .label {
+    color: $primary;
+    font-weight: bold;
+    font-family: 'Oswald', 'Oswald-Regular', 'Oswald-Bold';
+    font-size: 16;
+  }
+  .input {
+    border-bottom-width: 2;
+    border-color: $primary;
+    width: 100%;
+  }
+}
+
+.fa {
+  font-family: 'FontAwesome', 'Font-Awesome';
 }

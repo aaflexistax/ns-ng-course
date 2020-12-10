@@ -1,6 +1,5 @@
 @import 'app.common';
-
-.btn {
-  background: purple;
-  color: white;
+.btn-primary {
+  background: $btn-color;
+  color: $btn-text;
 }

@@ -4,7 +4,7 @@
     <NavigationButton *ngIf="android && hasMenu" icon="font://&#9776;" (tap)="onToggleButton()">
     </NavigationButton>
     <ActionItem *ngIf="!android && hasMenu" ios.position="left" (tap)="onToggleButton()">
-        <Label text="MENU"></Label>
+        <Label text="&#xf0c9;" class="fa m-5"></Label>
     </ActionItem>
     <ng-content></ng-content>
 </ActionBar>

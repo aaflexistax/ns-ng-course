@@ -17,7 +17,7 @@ export class UIService {
     this._routeVCRef = vcRef;
   }
 
-  getRoutVCRef() {
+  getRouteVCRef() {
     return this._routeVCRef;
   }
 }

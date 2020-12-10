@@ -1,0 +1,45 @@
+@import '../../../theme/colors';
+
+.title {
+  font-size: 26;
+}
+
+.page {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20;
+}
+
+.week-day-label {
+  color: $secondary;
+  font-weight: bold;
+  margin: 15 0;
+}
+
+.day-label {
+  justify-content: center;
+  align-items: center;
+  margin: 10;
+  width: 50;
+  height: 50;
+  border-color: $primary;
+  border-width: 1;
+  border-radius: 50%;
+  color: $primary;
+  font-size: 16;
+  &.completed {
+    background: $green;
+    color: white;
+  }
+
+  &.failed {
+    background: $red;
+    color: white;
+  }
+
+  &.not-settable {
+    background-color: #ccc;
+    color: black;
+  }
+}
