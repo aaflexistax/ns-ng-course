@@ -1,5 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NativeScriptCommonModule, NativeScriptRouterModule } from '@nativescript/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NativeScriptCommonModule, NativeScriptFormsModule, NativeScriptRouterModule } from '@nativescript/angular';
 import { SharedModule } from '../../shared/shared.module';
 import { ChallengeEditComponent } from './challenge-edit.component';
 
@@ -8,7 +9,10 @@ import { ChallengeEditComponent } from './challenge-edit.component';
     SharedModule,
     NativeScriptCommonModule,
     NativeScriptRouterModule,
-    NativeScriptRouterModule.forChild([{ path: '', component: ChallengeEditComponent }])
+    NativeScriptRouterModule.forChild([{ path: '', component: ChallengeEditComponent }]),
+    NativeScriptFormsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [ChallengeEditComponent],
   schemas: [NO_ERRORS_SCHEMA]
