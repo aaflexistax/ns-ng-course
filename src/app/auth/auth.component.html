@@ -1,4 +1,21 @@
-<ns-action-bar title="NG NS Course" [hasMenu]="false" [showBackButton]="false"></ns-action-bar>
-<FlexboxLayout justifyContent="center" alignItems="center" flexDirection="column">
-    <Button nsRouterLink="/challenges" class="btn btn-primary" text="Login" [clearHistory]="true"></Button>
-</FlexboxLayout>
+<ns-action-bar [title]="isLogin ? 'Login' : 'Signup'" [hasMenu]="false" [showBackButton]="false">
+</ns-action-bar>
+<StackLayout class="form" [formGroup]="form">
+    <StackLayout class="input-field">
+        <Label class="label" text="Email" [class]="{invalid: !emailControlIsValid }"></Label>
+        <TextField class="input" keyboardType="email" returnKeyType="next" required [autocorrect]="false"
+            autocapitalize="none" formControlName="email" #emailEl></TextField>
+        <Label text="Please add a valid email" *ngIf="!emailControlIsValid"></Label>
+
+    </StackLayout>
+    <StackLayout class="input-field">
+        <Label class="label" text="Description" [class]="{invalid: !passwordControlIsValid }"></Label>
+        <TextField class="input" retunrKeyType="done" required [autocorrect]="false" autocapitalize="none"
+            [secure]="true" hint="Min 6 characters" formControlName="password" #passwordEl (returnPress)="onSubmit()">
+        </TextField>
+        <Label text="Please add a valid password which is max 6 characters" *ngIf="!passwordControlIsValid"></Label>
+    </StackLayout>
+    <Button [text]="isLogin ? 'Signp instead' : 'Login instead' " class="btn btn-flat" (tap)="onSwitch()"></Button>
+    <Button class="btn btn-primary" [text]="isLogin ? 'Login' : 'Signup'" (tap)="onSubmit()"
+        [isEnabled]="form.valid"></Button>
+</StackLayout>
