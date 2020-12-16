@@ -30,4 +30,13 @@ export class ChallengeService {
             console.log(challenge.days[dayIndex]);
         });
     }
+
+    updateChallenge(title: string, description: string) {
+        this._currentChallenge.pipe(take(1)).subscribe(ch => {
+            const challenge = ch;
+            challenge.title = title;
+            challenge.description = description;
+            this._currentChallenge.next(challenge);
+        });
+    }
 }

@@ -4,7 +4,7 @@
     <Label text="&#xf0fe;" class="fa p-10" fontSize="24" color="white"></Label>
   </ActionItem>
   <ActionItem ios.position="right" android.position="actionBar" nsRouterLink="/challenges/edit"
-    pageTransition="slideLeft">
+    pageTransition="slideLeft" *ngIf="currentChallenge">
     <Label text="&#xf044;" class="fa p-10" fontSize="24" color="white"></Label>
 
   </ActionItem>
