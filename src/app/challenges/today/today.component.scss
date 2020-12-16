@@ -1,6 +1,22 @@
-GridLayout {
-  background-image: url('res://colors');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+@import '../../../theme/colors';
+FlexboxLayout {
+    position: relative;
+    Label {
+        color: $secondary;
+        margin: 10;
+        padding: 20 0;
+    }
+}
+
+.background {
+    background-image: url('res://colors');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
 }

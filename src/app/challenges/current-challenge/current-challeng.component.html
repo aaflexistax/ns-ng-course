@@ -11,16 +11,23 @@
 </ns-action-bar>
 <ScrollView>
   <FlexboxLayout class="page">
-    <StackLayout>
-      <Label class="h1 title text-center" text="Walk every day "></Label>
-      <Label class="body text-center" text="You can do this. Its basic. One step at a time"></Label>
+    <StackLayout *ngIf="!currentChallenge">
+      <Label text="No Challenge Found" class="text-center"></Label>
+      <Button class="btn btn-primary" text="Create one" nsRouterLink="/challenges/replace"
+        pageTransition="slideLeft"></Button>
     </StackLayout>
-    <GridLayout rows="auto,*,*,*,*,*,*" columns="*,*,*,*,*,*,*">
+    <StackLayout *ngIf="currentChallenge">
+      <Label class="h1 title text-center" [text]="currentChallenge.title"></Label>
+      <Label class="body text-center" [text]="currentChallenge.description"></Label>
+    </StackLayout>
+    <GridLayout rows="auto,*,*,*,*,*,*" columns="*,*,*,*,*,*,*" *ngIf="currentChallenge">
       <Label class="text-center week-day-label" width="100%" *ngFor="let weekDay of weekDays; let i = index"
         [text]="weekDay" row="0" [col]="i">
       </Label>
-      <FlexboxLayout class="day-label" *ngFor="let day of days; let i = index" [row]="getRow(i, day)"
-        [col]="day.dayInWeek" (tap)="onChangeStatus()">
+      <FlexboxLayout class="day-label"
+        [ngClass]="{'not-settable': !getIsSettable(day.dayInMonth), completed:day.status === 1, failed: day.status ===  2}"
+        *ngFor="let day of currentChallenge.days; let i = index" [row]="getRow(i, day)" [col]="day.dayInWeek"
+        (tap)="onChangeStatus(day)">
         <Label class="text-center" [text]="day.dayInMonth"></Label>
       </FlexboxLayout>
     </GridLayout>

@@ -38,7 +38,7 @@ export class AuthComponent implements OnInit {
     this.emailEl.nativeElement.focus();
     this.passwordEl.nativeElement.focus();
     this.passwordEl.nativeElement.dismissSoftInput();
-    if (!this.form.valid) return;
+    // if (!this.form.valid) return;
     const email = this.form.get('email').value;
     const password = this.form.get('password').value;
     this.form.reset();
@@ -49,6 +49,7 @@ export class AuthComponent implements OnInit {
     } else {
       console.log('sign up');
     }
+    this.router.navigate(['/challenges']);
   }
 
   onSwitch() {

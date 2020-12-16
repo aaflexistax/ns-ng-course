@@ -1,5 +1,15 @@
 <ns-action-bar title="Today's Challenge" [showBackButton]="false"></ns-action-bar>
-<GridLayout>
+<AbsoluteLayout class="background"></AbsoluteLayout>
+<FlexboxLayout *ngIf="!currentDay" flexDirection="column" justifyContent="center">
+    <Label text="No Challenge Found" class="text-center h1"></Label>
+    <Button class="btn btn-primary" text="Create one" nsRouterLink="/challenges/replace"
+        pageTransition="slideLeft"></Button>
+</FlexboxLayout>
+<FlexboxLayout *ngIf="currentDay" flexDirection="column" justifyContent="center">
 
-    <ns-challenge-actions (actionSelection)="onActionSelected($event)" cancelText="Reset"></ns-challenge-actions>
-</GridLayout>
+
+    <Label class="h1 text-center" [text]="currentDay.date | date"></Label>
+
+    <ns-challenge-actions (actionSelection)="onActionSelected($event)" [chosen]="getActionName()" cancelText="Reset">
+    </ns-challenge-actions>
+</FlexboxLayout>

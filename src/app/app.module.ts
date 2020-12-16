@@ -8,6 +8,7 @@ import { AuthComponent } from './auth/auth.component';
 import { DayModalComponent } from './challenges/day-modal/day-modal.component';
 import { TodayComponent } from './challenges/today/today.component';
 import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   bootstrap: [AppComponent],
   imports: [

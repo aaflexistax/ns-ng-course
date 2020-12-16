@@ -1,20 +1,42 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { DayStatus } from '../day.model';
 
 @Component({
-  selector: 'ns-challenge-actions',
-  templateUrl: './challenge-actions.component.html',
-  styleUrls: ['./challenge-actions.component.scss'],
-  moduleId: module.id
+    selector: 'ns-challenge-actions',
+    templateUrl: './challenge-actions.component.html',
+    styleUrls: ['./challenge-actions.component.scss'],
+    moduleId: module.id
 })
-export class ChallengeActionsComponent implements OnInit {
-  @Output() actionSelection = new EventEmitter<'complete' | 'fail' | 'cancel'>();
-  @Input() cancelText = 'Cancel';
+export class ChallengeActionsComponent implements OnInit, OnChanges {
+    @Output() actionSelection = new EventEmitter<DayStatus>();
+    @Input() cancelText = 'Cancel';
+    @Input() chosen: 'complete' | 'fail' = null;
+    action: 'complete' | 'fail' = null;
+    done: boolean = false;
 
-  constructor() {}
+    constructor() {}
 
-  ngOnInit(): void {}
+    ngOnInit(): void {}
 
-  onAction(action: 'complete' | 'fail' | 'cancel') {
-    this.actionSelection.emit(action);
-  }
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.chosen) {
+            this.action = changes.chosen.currentValue;
+        }
+    }
+
+    onAction(action: 'complete' | 'fail' | 'cancel') {
+        this.done = true;
+        let status = DayStatus.Open;
+        if (action === 'complete') {
+            status = DayStatus.Completed;
+            this.action = 'complete';
+        } else if (action === 'fail') {
+            status = DayStatus.Failed;
+            this.action = 'fail';
+        } else if (action === 'cancel') {
+            this.done = false;
+        }
+
+        this.actionSelection.emit(status);
+    }
 }
