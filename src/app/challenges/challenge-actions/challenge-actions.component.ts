@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChallengeService } from '../challenge.service';
 import { DayStatus } from '../day.model';
 
 @Component({
@@ -11,10 +12,9 @@ export class ChallengeActionsComponent implements OnInit, OnChanges {
     @Output() actionSelection = new EventEmitter<DayStatus>();
     @Input() cancelText = 'Cancel';
     @Input() chosen: 'complete' | 'fail' = null;
+    @Input() startDone = false;
     action: 'complete' | 'fail' = null;
     done: boolean = false;
-
-    constructor() {}
 
     ngOnInit(): void {}
 
@@ -22,6 +22,14 @@ export class ChallengeActionsComponent implements OnInit, OnChanges {
         if (changes.chosen) {
             this.action = changes.chosen.currentValue;
             if (this.action === null) {
+                this.done = false;
+            }
+        }
+
+        if (changes.startDone) {
+            if (changes.startDone.currentValue) {
+                this.done = true;
+            } else {
                 this.done = false;
             }
         }

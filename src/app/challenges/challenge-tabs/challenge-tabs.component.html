@@ -1,4 +1,4 @@
-<Tabs tabsPosition="bottom">
+<Tabs tabsPosition="bottom" *ngIf="!isLoading">
     <TabStrip>
         <TabStripItem iconSource="res://check"><Label text="Today"></Label></TabStripItem>
         <TabStripItem iconSource="res://trophy"><Label text="Current Challenge"></Label></TabStripItem>
@@ -10,3 +10,7 @@
         <page-router-outlet name="currentChallenge"></page-router-outlet>
     </TabContentItem>
 </Tabs>
+
+<FlexboxLayout *ngIf="isLoading" justifyContent="center" alignItems="center">
+    <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+</FlexboxLayout>

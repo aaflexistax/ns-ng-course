@@ -10,6 +10,7 @@
 
     <Label class="h1 text-center" [text]="currentDay.date | date"></Label>
 
-    <ns-challenge-actions (actionSelection)="onActionSelected($event)" [chosen]="getActionName()" cancelText="Reset">
+    <ns-challenge-actions (actionSelection)="onActionSelected($event)" [chosen]="getActionName()"
+        [startDone]="getActionName() === 'complete' || getActionName() === 'fail'" cancelText="Reset">
     </ns-challenge-actions>
 </FlexboxLayout>
