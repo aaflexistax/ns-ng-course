@@ -1,8 +1,7 @@
 <RadSideDrawer tkToggleNavButton>
     <FlexboxLayout tkDrawerContent class="drawer-container">
         <FlexboxLayout>
-            <Button text="Logout" nsRouterLink='/' (tap)="onLogout()" [clearHistory]="true"
-                class="btn btn-primary"></Button>
+            <Button text="Logout" (tap)="onLogout()" class="btn btn-primary"></Button>
         </FlexboxLayout>
     </FlexboxLayout>
     <StackLayout tkMainContent>

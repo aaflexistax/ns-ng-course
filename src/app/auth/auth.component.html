@@ -16,5 +16,7 @@
         <Label text="Please add a valid password which is max 6 characters" *ngIf="!passwordControlIsValid"></Label>
     </StackLayout>
     <Button [text]="isLogin ? 'Signp instead' : 'Login instead' " class="btn btn-flat" (tap)="onSwitch()"></Button>
-    <Button class="btn btn-primary" [text]="isLogin ? 'Login' : 'Signup'" (tap)="onSubmit()"></Button>
+    <Button class="btn btn-primary" [text]="isLogin ? 'Login' : 'Signup'" (tap)="onSubmit()" [isEnabled]="form.valid"
+        *ngIf="!isLoading"></Button>
+    <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
 </StackLayout>

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { switchMap, take, tap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 import { Challenge } from './challenge.model';
 import { Day, DayStatus } from './day.model';
 
@@ -9,7 +10,7 @@ import { Day, DayStatus } from './day.model';
 export class ChallengeService {
     private _currentChallenge = new BehaviorSubject<Challenge>(null);
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private authService: AuthService) {}
 
     get currentChallenge() {
         return this._currentChallenge.asObservable();
@@ -31,7 +32,6 @@ export class ChallengeService {
             challenge.days[dayIndex].status = status;
             this.saveToServer(challenge);
             this._currentChallenge.next(challenge);
-            console.log(challenge.days[dayIndex]);
         });
     }
 
@@ -46,24 +46,42 @@ export class ChallengeService {
     }
 
     fetchCurrentChallenge() {
-        return this.http
-            .get<{ title: string; description: string; month: number; year: number; _days?: Day[] }>(
-                'https://ng-ns-course-aa-default-rtdb.europe-west1.firebasedatabase.app/challenge.json'
-            )
-            .pipe(
-                tap(res => {
-                    if (!res) return;
-                    let ch = new Challenge(res.title, res.description, res.year, res.month, res._days);
-                    this._currentChallenge.next(ch);
-                })
-            );
+        return this.authService.user.pipe(
+            take(1),
+            switchMap(currentUser => {
+                if (!currentUser || !currentUser.isAuth) {
+                    return of(null);
+                }
+                return this.http.get<{
+                    title: string;
+                    description: string;
+                    month: number;
+                    year: number;
+                    _days?: Day[];
+                }>(
+                    `https://ng-ns-course-aa-default-rtdb.europe-west1.firebasedatabase.app/challenge/${currentUser.id}.json?auth=${currentUser.token}`
+                );
+            }),
+            tap(res => {
+                if (!res) return;
+                let ch = new Challenge(res.title, res.description, res.year, res.month, res._days);
+                this._currentChallenge.next(ch);
+            })
+        );
     }
 
     saveToServer(challenge: Challenge) {
-        this.http
-            .put('https://ng-ns-course-aa-default-rtdb.europe-west1.firebasedatabase.app/challenge.json', challenge)
-            .subscribe(res => {
-                console.log(res);
-            });
+        return this.authService.user.pipe(
+            take(1),
+            switchMap(currentUser => {
+                if (!currentUser || !currentUser.isAuth) {
+                    return of(null);
+                }
+                return this.http.put(
+                    `https://ng-ns-course-aa-default-rtdb.europe-west1.firebasedatabase.app/challenge/${currentUser.id}.json?auth=${currentUser.token}`,
+                    challenge
+                );
+            })
+        );
     }
 }

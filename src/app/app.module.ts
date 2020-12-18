@@ -4,7 +4,6 @@ import { NativeScriptFormsModule, NativeScriptHttpClientModule, NativeScriptModu
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
 import { DayModalComponent } from './challenges/day-modal/day-modal.component';
 import { TodayComponent } from './challenges/today/today.component';
 import { SharedModule } from './shared/shared.module';
@@ -21,7 +20,7 @@ import { SharedModule } from './shared/shared.module';
         NativeScriptHttpClientModule
     ],
     entryComponents: [DayModalComponent],
-    declarations: [AppComponent, AuthComponent, DayModalComponent, TodayComponent],
+    declarations: [AppComponent, DayModalComponent, TodayComponent],
     providers: [],
     schemas: [NO_ERRORS_SCHEMA]
 })

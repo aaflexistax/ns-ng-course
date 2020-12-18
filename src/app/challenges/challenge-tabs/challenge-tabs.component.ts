@@ -28,12 +28,10 @@ export class ChallengeTabsComponent implements OnInit {
 
             .subscribe(
                 res => {
-                    console.log(res);
                     this.isLoading = false;
                     this.loadTabsRoutes();
                 },
                 err => {
-                    console.log(err);
                     this.isLoading = false;
                     this.loadTabsRoutes();
                 }
