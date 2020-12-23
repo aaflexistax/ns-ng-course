@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
-import { BehaviorSubject, of, throwError } from 'rxjs';
-import { alert } from '@nativescript/core';
-import { User } from './user.model';
+import { Injectable } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
-import { setString, getString, hasKey, remove } from '@nativescript/core/application-settings';
+import { alert } from '@nativescript/core';
+import { getString, hasKey, remove, setString } from '@nativescript/core/application-settings';
+import { BehaviorSubject, of, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { User } from './user.model';
 
 interface AuthResponseData {
     kind: string;

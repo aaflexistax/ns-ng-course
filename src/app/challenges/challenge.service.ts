@@ -1,16 +1,29 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, of } from 'rxjs';
-import { switchMap, take, tap } from 'rxjs/operators';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, of, Subscription, throwError } from 'rxjs';
+import { catchError, switchMap, take, tap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { Challenge } from './challenge.model';
 import { Day, DayStatus } from './day.model';
 
 @Injectable({ providedIn: 'root' })
-export class ChallengeService {
+export class ChallengeService implements OnDestroy, OnInit {
     private _currentChallenge = new BehaviorSubject<Challenge>(null);
+    private userSub: Subscription;
 
     constructor(private http: HttpClient, private authService: AuthService) {}
+
+    ngOnInit() {
+        this.userSub = this.authService.user.subscribe(user => {
+            if (!user) {
+                this._currentChallenge.next(null);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.userSub.unsubscribe();
+    }
 
     get currentChallenge() {
         return this._currentChallenge.asObservable();
@@ -18,7 +31,7 @@ export class ChallengeService {
 
     createNewChallenge(title: string, description: string) {
         const newChallenge = new Challenge(title, description, new Date().getFullYear(), new Date().getMonth());
-        this.saveToServer(newChallenge);
+        this.saveToServer(newChallenge).subscribe();
         this._currentChallenge.next(newChallenge);
     }
 
@@ -30,7 +43,7 @@ export class ChallengeService {
             const dayIndex = challenge.days.findIndex(d => d.dayInMonth === dayInMonth);
 
             challenge.days[dayIndex].status = status;
-            this.saveToServer(challenge);
+            this.saveToServer(challenge).subscribe();
             this._currentChallenge.next(challenge);
         });
     }
@@ -40,7 +53,7 @@ export class ChallengeService {
             const challenge = ch;
             challenge.title = title;
             challenge.description = description;
-            this.saveToServer(challenge);
+            this.saveToServer(challenge).subscribe();
             this._currentChallenge.next(challenge);
         });
     }
@@ -64,6 +77,7 @@ export class ChallengeService {
             }),
             tap(res => {
                 if (!res) return;
+                console.log(res);
                 let ch = new Challenge(res.title, res.description, res.year, res.month, res._days);
                 this._currentChallenge.next(ch);
             })
@@ -81,6 +95,10 @@ export class ChallengeService {
                     `https://ng-ns-course-aa-default-rtdb.europe-west1.firebasedatabase.app/challenge/${currentUser.id}.json?auth=${currentUser.token}`,
                     challenge
                 );
+            }),
+            catchError(err => {
+                console.log(err);
+                return throwError(err);
             })
         );
     }
